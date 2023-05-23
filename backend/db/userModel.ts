@@ -1,5 +1,4 @@
 import mongoose, { Document, Model } from "mongoose";
-import dotenv from 'dotenv';
 
 export interface UserDocument extends Document {
   email: string;
