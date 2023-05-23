@@ -1,0 +1,27 @@
+"filename", "language", "JSON with Comments", "TypeScript", "XML", "TypeScript JSX", "YAML", "JSON", "CSS", "HTML", "comment", "blank", "total"
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\app.ts", "TypeScript", 0, 105, 0, 0, 0, 0, 0, 0, 7, 12, 124
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\auth.ts", "TypeScript", 0, 27, 0, 0, 0, 0, 0, 0, 0, 7, 34
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\db\dbConnect.ts", "TypeScript", 0, 18, 0, 0, 0, 0, 0, 0, 0, 7, 25
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\db\userModel.ts", "TypeScript", 0, 19, 0, 0, 0, 0, 0, 0, 0, 3, 22
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\index.ts", "TypeScript", 0, 41, 0, 0, 0, 0, 0, 0, 0, 7, 48
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\package-lock.json", "JSON", 0, 0, 0, 0, 0, 2134, 0, 0, 0, 1, 2135
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\package.json", "JSON", 0, 0, 0, 0, 0, 28, 0, 0, 0, 1, 29
+"c:\Users\pumafol01\Desktop\react\crm-mern\backend\pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 919, 0, 0, 0, 0, 164, 1083
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\package.json", "JSON", 0, 0, 0, 0, 0, 62, 0, 0, 0, 1, 63
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\pnpm-lock.yaml", "YAML", 0, 0, 0, 0, 9078, 0, 0, 0, 0, 1211, 10289
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\public\index.html", "HTML", 0, 0, 0, 0, 0, 0, 0, 17, 23, 1, 41
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\public\manifest.json", "JSON", 0, 0, 0, 0, 0, 25, 0, 0, 0, 1, 26
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\App.tsx", "TypeScript JSX", 0, 0, 0, 14, 0, 0, 0, 0, 0, 3, 17
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\components\auth\auth.tsx", "TypeScript JSX", 0, 0, 0, 16, 0, 0, 0, 0, 0, 3, 19
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\components\auth\login\login.tsx", "TypeScript JSX", 0, 0, 0, 67, 0, 0, 0, 0, 0, 7, 74
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\components\auth\register\register.tsx", "TypeScript JSX", 0, 0, 0, 69, 0, 0, 0, 0, 0, 7, 76
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\config\routes.tsx", "TypeScript JSX", 0, 0, 0, 15, 0, 0, 0, 0, 0, 5, 20
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 8, 0, 0, 1, 9
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\index.tsx", "TypeScript JSX", 0, 0, 0, 14, 0, 0, 0, 0, 0, 3, 17
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\logo.svg", "XML", 0, 0, 7, 0, 0, 0, 0, 0, 0, 1, 8
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\react-app-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\service-worker.ts", "TypeScript", 0, 38, 0, 0, 0, 0, 0, 0, 30, 13, 81
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\src\serviceWorkerRegistration.ts", "TypeScript", 0, 98, 0, 0, 0, 0, 0, 0, 31, 14, 143
+"c:\Users\pumafol01\Desktop\react\crm-mern\frontend\tsconfig.json", "JSON with Comments", 26, 0, 0, 0, 0, 0, 0, 0, 0, 1, 27
+"Total", "-", 26, 346, 7, 195, 9997, 2249, 8, 17, 92, 1476, 14413
