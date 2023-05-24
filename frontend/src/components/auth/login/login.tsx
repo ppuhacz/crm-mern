@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import "../styles/auth-styles.scss";
+import exclamationMarkIcon from "../../../img/exclamation-mark-rounded.svg";
 
 const cookies = new Cookies();
 
@@ -8,6 +10,7 @@ function Login({ setStatus }: any) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [login, setLogin] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>
@@ -28,11 +31,13 @@ function Login({ setStatus }: any) {
         setLogin(true);
         cookies.set("LOGIN-TOKEN", result.data?.token, {
           path: "/",
+          maxAge: 2592000, // 30 days
         });
         window.location.href = "/crm";
       })
       .catch((error) => {
         console.log(error);
+        setError("User has not been found");
       });
   };
 
@@ -40,15 +45,28 @@ function Login({ setStatus }: any) {
     <div className='login-container'>
       <div className='login-wrapper'>
         <h2>Login</h2>
-        <small>Demo account: email: demo@demo.com, pass: demo</small>
+        <small className='demo'>
+          <p>email: demo@demo.com</p>
+          <p>password: demo</p>
+        </small>
         <form onSubmit={(e) => handleSubmit(e)}>
-          {login && <h3>You have logged in successfully!</h3>}
+          {error && (
+            <p className='error-message'>
+              <img
+                src={exclamationMarkIcon}
+                width={15}
+                height={15}
+                alt='exclamation mark'
+              />
+              {error}
+            </p>
+          )}
           <div className='form-email'>
             <label htmlFor='email'>Email address</label>
             <input
               type='email'
-              placeholder='Enter email'
               name='email'
+              placeholder='Enter email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -57,8 +75,8 @@ function Login({ setStatus }: any) {
             <label htmlFor='password'>Password</label>
             <input
               type='password'
-              placeholder='Enter pasword'
               name='password'
+              placeholder='Enter pasword'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -67,11 +85,11 @@ function Login({ setStatus }: any) {
             Login
           </button>
         </form>
-        <small>
-          Don't have an account?{" "}
-          <span className='change-status' onClick={() => setStatus("Register")}>
+        <small className='account-question'>
+          Don't have an account? <br />
+          <div className='change-status' onClick={() => setStatus("Register")}>
             Click here to register!
-          </span>
+          </div>
         </small>
       </div>
     </div>

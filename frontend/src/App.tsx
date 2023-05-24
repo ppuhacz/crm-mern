@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import Register from "./components/auth/register/register";
 import Login from "./components/auth/login/login";
 import { RouterProvider } from "react-router-dom";
