@@ -1,0 +1,83 @@
+
+header {
+  position: relative;
+
+  .header-wrapper {
+    // padding: 15px;
+    height: 100vh;
+    background-color: #23242b;
+    color: white;
+    overflow: hidden;
+    width: 250px;
+    transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .hidden {
+    width: 50px;
+    transition: width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  .navigation-list {
+    margin: 50px 0;
+    padding: 0;
+    list-style-type: none;
+    border-top: 1px solid #ffffff34;
+
+    li {
+      padding: 15px 0 15px 17px;
+      display: flex;
+      gap: 30px;
+      justify-content: space-between;
+      border-bottom: 1px solid #ffffff34;
+      overflow: hidden;
+      transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+
+      &:hover {
+        transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+        background-color: #ffffff34;
+      }
+      span {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .open-close-button{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid #ffffff34;
+    border-radius: 5px;
+    transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+
+    &:hover {
+      transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+      background-color: #ffffff34;
+    }
+  }
+
+  .logout-button {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    gap: 30px;
+    justify-content: space-between;
+    background-color: #aa2a2a;
+    border: none;
+    color: white;
+    transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+
+    &:hover {
+      background-color: #db2020;
+      transition: background-color 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+  }
+}

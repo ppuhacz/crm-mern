@@ -89,8 +89,16 @@ app.post("/login", (request: Request, response: Response) => {
         { expiresIn: "24h" }
       )
 
+      // Setting the token to a HTTP only cookie
+
+      response.cookie("LOGIN-TOKEN", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict"
+      });
+
       response.status(200).send({
-        message: "Login successful!",
+        message: "Login successful!" + token,
         email: user.email,
         userID: user._id,
         token

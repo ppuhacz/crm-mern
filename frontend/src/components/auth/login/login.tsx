@@ -9,7 +9,6 @@ const cookies = new Cookies();
 function Login({ setStatus }: any) {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [login, setLogin] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
   const handleSubmit = (
@@ -28,7 +27,6 @@ function Login({ setStatus }: any) {
 
     axios(config)
       .then((result) => {
-        setLogin(true);
         cookies.set("LOGIN-TOKEN", result.data?.token, {
           path: "/",
           maxAge: 2592000, // 30 days
