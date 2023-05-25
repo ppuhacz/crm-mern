@@ -31,7 +31,11 @@ function Login({ setStatus }: any) {
           path: "/",
           maxAge: 2592000, // 30 days
         });
-        window.location.href = "/crm";
+        cookies.set("USER-ID", result.data?.userID, {
+          path: "/",
+          maxAge: 2592000, // 30 days
+        });
+        window.location.href = "/dashboard";
       })
       .catch((error) => {
         console.log(error);

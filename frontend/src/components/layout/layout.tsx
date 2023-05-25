@@ -1,10 +1,10 @@
 import React from "react";
 import Header from "../header/header";
 
-const Layout = ({ children, data }: any) => {
+const Layout = ({ children }: any) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
     </>
   );

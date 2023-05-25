@@ -3,6 +3,7 @@ import mongoose, { Document, Model } from "mongoose";
 export interface UserDocument extends Document {
   email: string;
   password: string;
+  fullname: string;
 }
 const UserSchema = new mongoose.Schema({
   email: {
@@ -14,7 +15,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password!"],
     unique: false,
+  },
+  fullname: {
+    type: String,
+    unique: false,
+    required: true
   }
+
 })
 
 const User: Model<UserDocument> = mongoose.model<UserDocument>("User", UserSchema);

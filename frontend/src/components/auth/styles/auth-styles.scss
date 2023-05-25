@@ -1,3 +1,4 @@
+@import '../../../config/styles/variables.scss';
 
 .login-page {
   width: 100%;
@@ -125,7 +126,7 @@
             content: '>';
             position: relative;
             left: 10px;
-            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition-timing-function: $transitionProp;
             transition-duration: 400ms;
             transition-property: left;
           }
@@ -133,7 +134,7 @@
           &:hover {
             &::after {
               left: 25px;
-              transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+              transition-timing-function: $transitionProp;
               transition-duration: 400ms;
               transition-property: left;
             }
@@ -161,6 +162,16 @@
           border-radius: 5px;
           color:white;
         }
+
+        .register-success {
+          text-align: center;
+          background-color: #06a52e;
+          padding: 10px 5px;
+          font-size: 0.75rem;
+          font-weight: 400;
+          border-radius: 5px;
+          color:white;
+        }
       }
     }
     .account-question {
@@ -177,7 +188,7 @@
         position: relative;
         border: none;
         background: none;
-        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-timing-function: $transitionProp;
         transition-duration: 400ms;
         transition-property: color;
       }
@@ -202,7 +213,7 @@
         width: 0%;
         height: 1.5px;
         background-color: #FFA500;
-        transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition-timing-function: $transitionProp;
         transition-duration: 400ms;
         transition-property: width, left;
       }

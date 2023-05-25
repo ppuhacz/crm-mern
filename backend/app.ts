@@ -37,7 +37,8 @@ app.post("/register", (request: Request, response: Response) => {
   .then((hashedPassword) => {
     const user = new User({
       email: request.body.email,
-      password: hashedPassword
+      password: hashedPassword,
+      fullname: "",
     })
     user.save()
     .then((result) => {
@@ -97,6 +98,12 @@ app.post("/login", (request: Request, response: Response) => {
         sameSite: "strict"
       });
 
+      response.cookie("USER-ID", user._id, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict"
+      });
+
       response.status(200).send({
         message: "Login successful!" + token,
         email: user.email,
@@ -119,10 +126,63 @@ app.post("/login", (request: Request, response: Response) => {
   })
 })
 
-// free endpoint
-app.get("/free-endpoint", (request, response) => {
-  response.json({ message: "You are free to access me anytime" });
+// Fetch data based on user ID
+app.get("/data/:userId", (request: Request, response: Response) => {
+  const { userId } = request.params;
+
+  User.findById(userId)
+    .then((user) => {
+      if (!user) {
+        return response.status(404).send({
+          message: "User not found"
+        });
+      }
+
+      response.status(200).send(user);
+    })
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error fetching user data",
+        error
+      });
+    });
 });
+
+app.post("/account/:userId", (request: Request, response: Response) => {
+  const { userId } = request.params;
+  const { fullname } = request.body
+
+  User.findById(userId)
+
+    .then((user) => {
+      if (!user) {
+        return response.status(404).send({
+          message: "User not found"
+        });
+      }
+
+      user.fullname = fullname
+
+      // Save the updated user object
+      user.save()
+      .then((updatedUser) => {
+        response.status(200).send(updatedUser);
+      })
+      .catch((error) => {
+         response.status(500).send({
+          message: "Error saving user data",
+            error
+        });
+      });
+    })
+    .catch((error) => {
+      response.status(500).send ({
+        message: "Error fetching user data",
+        error
+      })
+    })
+  });
+
 
 // authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {

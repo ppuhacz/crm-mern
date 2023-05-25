@@ -60,7 +60,7 @@ function Register({ setStatus }: any) {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className='form-email'>
             {register && (
-              <h3 className='register-succes'>
+              <h3 className='register-success'>
                 You have registered successfully!
               </h3>
             )}
