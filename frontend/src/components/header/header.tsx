@@ -20,6 +20,7 @@ const Header = () => {
 
   const logout = () => {
     cookies.remove("LOGIN-TOKEN");
+    cookies.remove("USER-ID");
   };
 
   // Check if the current path is the root path

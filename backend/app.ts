@@ -150,7 +150,7 @@ app.get("/data/:userId", (request: Request, response: Response) => {
 
 app.post("/account/:userId", (request: Request, response: Response) => {
   const { userId } = request.params;
-  const { fullname } = request.body
+  const { fullname, username } = request.body
 
   User.findById(userId)
 
@@ -162,6 +162,7 @@ app.post("/account/:userId", (request: Request, response: Response) => {
       }
 
       user.fullname = fullname
+      user.username = username
 
       // Save the updated user object
       user.save()

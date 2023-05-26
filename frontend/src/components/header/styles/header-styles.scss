@@ -90,6 +90,7 @@ header {
   }
 
   .logout-button {
+    overflow: hidden;
     display: flex;
     gap:30px;
     white-space: nowrap;

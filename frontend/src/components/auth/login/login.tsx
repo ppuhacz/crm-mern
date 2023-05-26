@@ -17,7 +17,7 @@ function Login({ setStatus }: any) {
     e.preventDefault();
 
     const config = {
-      method: "post",
+      method: "POST",
       url: "http://localhost:3000/login",
       data: {
         email,

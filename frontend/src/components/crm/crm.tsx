@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import FirstLogin from "./first-login/first-login";
 const cookies = new Cookies();
 const Crm = () => {
   const [msg, setMsg] = useState<string>("");
   const token = cookies.get("LOGIN-TOKEN");
   const userID = cookies.get("USER-ID");
   const [data, setData] = useState<any>([]);
-  const [error, setError] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
 
   useEffect(() => {
     const tokenConfig = {
@@ -26,7 +28,6 @@ const Crm = () => {
     axios(tokenConfig)
       .then((result) => {
         setMsg(result.data.message);
-        console.log(result);
       })
       .catch((error) => {
         error = new Error();
@@ -35,18 +36,29 @@ const Crm = () => {
     axios(dataConfig)
       .then((result) => {
         setData(result.data);
-        console.log(result);
+        setIsLoading(false);
+        console.log(result.data);
       })
       .catch((error) => {
-        setError("Error retrieving user data!");
+        setError("Error retrieving user data");
         error = new Error();
       });
   }, [token, userID]);
 
+  const { email, fullname } = data;
+
   return (
-    <h2>
-      {userID}, {data.email} {error && error}
-    </h2>
+    <>
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : fullname === "" ? (
+        <FirstLogin data={data} userID={userID} />
+      ) : (
+        <div className='dashboard-container'>
+          <h2>Hi {fullname}!</h2>
+        </div>
+      )}
+    </>
   );
 };
 

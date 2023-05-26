@@ -1,6 +1,11 @@
 $background-primary: #b33fee;
 $background-secondary: #3024ad;
+$background-primary-transparent: #b43fee96;
+$background-secondary-transparent: #2f24ad96;
+
 
 //transition properties
-
 $transitionProp: 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+$danger-color: #e70633;
+$required-color: #e70633;
