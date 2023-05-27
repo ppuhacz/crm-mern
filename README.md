@@ -34,29 +34,28 @@ This project is in a very early development. At this moment, only the following 
 <b>Login page</b>
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/d639e665-7333-4f7a-bdd1-9cc140f74f01)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/bc912219-a348-431e-b79a-381d6cc58f10)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/78efbd95-7afc-426e-9e71-ba99d87cf50d)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/ed265163-a79c-4d25-bf90-8eb0f642c5df)
 </br>
 </br>
 <b>First login prompt</b>
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/f0a91515-5523-4a6d-9cb7-87c56690cb9c)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/b9028d8d-72da-4a1e-b89a-666c35231360)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/57d37b4a-2f25-4b8d-a8eb-83e3f065f9e5)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/85de28a1-26a3-4342-ba06-e0f6876f95cf)
 </br>
 </br>
 <b>Navigation menu</b>
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/df4b03bb-878d-4d8a-a4ff-9f4420560abe)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/25eb9b86-5c73-45c5-bd96-fe83f0892ae5)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/86b8e023-339e-43f7-a79a-906e8fb0d804)
-
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/c44ac5a8-a4e1-44ce-a42e-75e10d5274bc)
 
 <!-- 
 # Get started 🤓
