@@ -148,6 +148,7 @@ app.get("/data/:userId", (request: Request, response: Response) => {
     });
 });
 
+// Update user's fullname and username
 app.post("/postname/:userId", (request: Request, response: Response) => {
   const { userId } = request.params;
   const { fullname, username } = request.body
