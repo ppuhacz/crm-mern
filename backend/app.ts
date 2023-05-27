@@ -148,7 +148,7 @@ app.get("/data/:userId", (request: Request, response: Response) => {
     });
 });
 
-app.post("/account/:userId", (request: Request, response: Response) => {
+app.post("/postname/:userId", (request: Request, response: Response) => {
   const { userId } = request.params;
   const { fullname, username } = request.body
 
@@ -161,8 +161,13 @@ app.post("/account/:userId", (request: Request, response: Response) => {
         });
       }
 
-      user.fullname = fullname
-      user.username = username
+      if (fullname) {
+        user.fullname = fullname
+      }
+
+      if (username) {
+        user.username = username
+      }
 
       // Save the updated user object
       user.save()

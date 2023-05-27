@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import FirstLogin from "./first-login/first-login";
+import "./styles/crm-styles.scss";
+
 const cookies = new Cookies();
 const Crm = () => {
   const [msg, setMsg] = useState<string>("");
@@ -37,7 +39,6 @@ const Crm = () => {
       .then((result) => {
         setData(result.data);
         setIsLoading(false);
-        console.log(result.data);
       })
       .catch((error) => {
         setError("Error retrieving user data");
@@ -46,12 +47,12 @@ const Crm = () => {
   }, [token, userID]);
 
   const { email, fullname } = data;
-
+  console.log(userID);
   return (
     <>
       {isLoading ? (
         <div>Loading...</div>
-      ) : fullname === "" ? (
+      ) : !fullname ? (
         <FirstLogin data={data} userID={userID} />
       ) : (
         <div className='dashboard-container'>

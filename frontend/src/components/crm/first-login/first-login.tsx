@@ -31,7 +31,7 @@ const FirstLogin = ({ data, userID }: any) => {
 
     const config = {
       method: "POST",
-      url: `http://localhost:3000/account/${userID}`,
+      url: `http://localhost:3000/postname/${userID}`,
       data: {
         fullname: fullname,
         username: username,
