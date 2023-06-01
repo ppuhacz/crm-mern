@@ -1,12 +1,17 @@
-@import '../../../config/styles/variables.scss';
+@import "../../../config/styles/variables.scss";
 
 header {
-  position: relative;
-  font-family: 'Poppins', sans-serif;
+  position: absolute;
+  font-family: "Poppins", sans-serif;
+  z-index: 99;
 
   .header-wrapper {
     height: 100vh;
-    background: linear-gradient(60deg, $background-primary 0%, $background-secondary 100%);
+    background: linear-gradient(
+      60deg,
+      $background-primary 0%,
+      $background-secondary 100%
+    );
     color: white;
     overflow: hidden;
     width: 250px;
@@ -58,7 +63,7 @@ header {
     }
   }
 
-  .open-close-button{
+  .open-close-button {
     position: absolute;
     display: flex;
     align-items: center;
@@ -67,16 +72,21 @@ header {
     right: -35px;
     width: 30px;
     height: 30px;
-    background: linear-gradient(60deg, $background-primary 0%, $background-secondary 100%);
+    background: linear-gradient(
+      60deg,
+      $background-primary 0%,
+      $background-secondary 100%
+    );
     color: rgb(255, 255, 255);
     border-radius: 50%;
     border: none;
     transition: background-color $transitionProp;
     cursor: pointer;
+    z-index: 99;
 
     .open {
       transform: rotateY(0);
-            transition: transform 400ms ease-out;
+      transition: transform 400ms ease-out;
     }
 
     .close {
@@ -92,7 +102,7 @@ header {
   .logout-button {
     overflow: hidden;
     display: flex;
-    gap:30px;
+    gap: 30px;
     white-space: nowrap;
     position: absolute;
     bottom: 0;
@@ -134,20 +144,20 @@ header {
     }
   }
 
-@media (min-width: 768px) {
-.hidden {
-  width: 50px;
-}
-.open-close-button {
-  right: 10px;
-  border-radius: 5px;
-  background: none;
-  background-color: #a7a7bb2d;
+  @media (min-width: 768px) {
+    .hidden {
+      width: 50px;
+    }
+    .open-close-button {
+      right: 10px;
+      border-radius: 5px;
+      background: none;
+      background-color: #a7a7bb2d;
 
-  &:hover {
-    transition: background-color $transitionProp;
-    background-color: #ffffff34;
+      &:hover {
+        transition: background-color $transitionProp;
+        background-color: #ffffff34;
+      }
+    }
   }
-}
-}
 }

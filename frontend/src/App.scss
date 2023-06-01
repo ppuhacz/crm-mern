@@ -1,14 +1,17 @@
 .App {
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-h2 {
-  font-family: 'Hind madurai', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Hind madurai", sans-serif;
   margin: 0;
 }
 
-p {
-  font-family: 'Raleway', sans-serif;
+p,
+li {
+  font-family: "Poppins", sans-serif;
   margin: 0;
 }

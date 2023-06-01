@@ -151,44 +151,48 @@ app.get("/data/:userId", (request: Request, response: Response) => {
 // Update user's fullname and username
 app.post("/postname/:userId", (request: Request, response: Response) => {
   const { userId } = request.params;
-  const { fullname, username } = request.body
+  const { fullname, username } = request.body;
+
+  // Check if fullname and username are of type string
+  if (typeof fullname !== "string" || typeof username !== "string") {
+    return response.status(400).send({
+      message: "Fullname and username must be strings",
+    });
+  }
 
   User.findById(userId)
-
     .then((user) => {
       if (!user) {
         return response.status(404).send({
-          message: "User not found"
+          message: "User not found",
         });
       }
 
-      if (fullname) {
-        user.fullname = fullname
-      }
-
-      if (username) {
-        user.username = username
-      }
+      // Update user object with new values
+      user.fullname = fullname;
+      user.username = username;
 
       // Save the updated user object
-      user.save()
-      .then((updatedUser) => {
-        response.status(200).send(updatedUser);
-      })
-      .catch((error) => {
-         response.status(500).send({
-          message: "Error saving user data",
-            error
+      user
+        .save()
+        .then((updatedUser) => {
+          response.status(200).send(updatedUser);
+        })
+        .catch((error) => {
+          response.status(500).send({
+            message: "Error saving user data",
+            error,
+          });
         });
-      });
     })
     .catch((error) => {
-      response.status(500).send ({
+      response.status(500).send({
         message: "Error fetching user data",
-        error
-      })
-    })
-  });
+        error,
+      });
+    });
+});
+
 
 
 // authentication endpoint

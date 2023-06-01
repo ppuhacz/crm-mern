@@ -1,12 +1,15 @@
 $background-primary: #b33fee;
 $background-secondary: #3024ad;
-$background-white: #E3E0F3;
+$background-white: #e3e0f3;
 $background-primary-transparent: #b43fee96;
 $background-secondary-transparent: #2f24ad96;
 
+// Background color for setting how dark a bg picture should be
+$backgroundPictureTransparencyColor: #36353a;
 
 //transition properties
 $transitionProp: 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+$transitionPropShort: 200ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
 $danger-color: #e70633;
 $required-color: #e70633;

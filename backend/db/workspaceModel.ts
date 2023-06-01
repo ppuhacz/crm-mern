@@ -1,0 +1,28 @@
+import mongoose, { Document, Model } from "mongoose";
+
+export interface WorkSpaceDocument extends Document {
+  companyName: string;
+  country: string;
+  city: string;
+}
+const WorkSpaceSchema = new mongoose.Schema({
+  companyName: {
+    type: String,
+    required: [true, "Please provide aa name!"],
+    unique: false
+  },
+  country: {
+    type: String,
+    unique: false,
+    required: false,
+  },
+  city: {
+    type: String,
+    unique: false,
+    required: false,
+  }
+})
+
+const WorkSpace: Model<WorkSpaceDocument> = mongoose.model<WorkSpaceDocument>("WorkSpace", WorkSpaceSchema);
+
+export default WorkSpace;

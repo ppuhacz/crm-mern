@@ -5,6 +5,7 @@ export interface UserDocument extends Document {
   password: string;
   fullname: string;
   username: string;
+  workSpaces: string[];
 }
 const UserSchema = new mongoose.Schema({
   email: {
@@ -26,8 +27,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: false,
-  }
-
+  },
+  workSpaces: {
+    type: Array,
+    unique: false,
+    required: false,
+  },
 })
 
 const User: Model<UserDocument> = mongoose.model<UserDocument>("User", UserSchema);

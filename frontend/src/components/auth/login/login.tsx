@@ -48,8 +48,8 @@ function Login({ setStatus }: any) {
       <div className='login-wrapper'>
         <h2>Login</h2>
         <small className='demo'>
-          <p>email: demo@demo.com</p>
-          <p>password: demo</p>
+          email: demo@demo.com <br />
+          password: demo
         </small>
         <form onSubmit={(e) => handleSubmit(e)}>
           {error && (

@@ -1,10 +1,10 @@
-@import '../../../config/styles/variables.scss';
+@import "../../../config/styles/variables.scss";
 
 .login-page {
   width: 100%;
   height: 100vh;
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 
   .background-logo {
     position: absolute;
@@ -13,50 +13,50 @@
     width: 120px;
   }
 
-    .mobile-login-bg {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      background-image: url("../../../img/login-background-mobile-v2.webp");
-      background-size: cover;
-      background-repeat: no-repeat;
+  .mobile-login-bg {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url("../../../img/login-background-mobile-v2.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
 
-    }
+  .desktop-login-bg {
+    position: relative;
+    width: 65vw;
+    max-width: 1652px;
+    height: 100vh;
+    overflow: hidden;
 
-    .desktop-login-bg {
-      position:relative;
+    .desktop-background {
       width: 65vw;
+      height: 100%;
       max-width: 1652px;
-      height: 100vh;
-      overflow: hidden;
-
-      .desktop-background {
-        width: 65vw;
-        height: 100%;
-        max-width: 1652px;
-        object-fit: cover;
-      }
-
-      .welcome-text{
-        position: absolute;
-        top: 50%;
-        left: 48%;
-        transform: translate(-50%, -50%);
-        color: white;
-        text-align: center;
-      }
-
-      h2 {
-        font-size: 5rem;
-        margin-bottom: -20px;
-      }
-
-      h3 {
-        font-size: 1.3rem;
-      }
+      object-fit: cover;
     }
 
-  .login-container, .register-container {
+    .welcome-text {
+      position: absolute;
+      top: 50%;
+      left: 48%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 5rem;
+      margin-bottom: -20px;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  .login-container,
+  .register-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -69,7 +69,8 @@
     backdrop-filter: blur(8px);
     max-width: 300px;
 
-    .login-wrapper, .register-wrapper {
+    .login-wrapper,
+    .register-wrapper {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -84,6 +85,7 @@
         text-align: center;
         color: #ffffff8a;
         font-size: 0.75rem;
+        font-family: "Raleway", sans-serif;
         p {
           margin: 0;
         }
@@ -98,9 +100,13 @@
           background-color: transparent;
           border: none;
           border-bottom: 1px solid transparent;
-          border-image: linear-gradient(90deg, rgba(103,88,255,1) 0%, rgba(179,63,238,1) 100%);
+          border-image: linear-gradient(
+            90deg,
+            rgba(103, 88, 255, 1) 0%,
+            rgba(179, 63, 238, 1) 100%
+          );
           border-image-slice: 1;
-          width:100%;
+          width: 100%;
           outline: none;
           color: white;
           padding: 5px;
@@ -112,18 +118,22 @@
         }
 
         button {
-          background: linear-gradient(90deg, rgba(179,63,238,1) 0%, rgba(103,88,255,1) 100%);
+          background: linear-gradient(
+            90deg,
+            rgba(179, 63, 238, 1) 0%,
+            rgba(103, 88, 255, 1) 100%
+          );
           border: none;
           color: white;
           width: 100%;
           height: 40px;
-          font-family: 'Poppins', sans-serif;
+          font-family: "Poppins", sans-serif;
           font-size: 0.9rem;
           letter-spacing: 0.5px;
           cursor: pointer;
 
           &::after {
-            content: '>';
+            content: ">";
             position: relative;
             left: 10px;
             transition-timing-function: $transitionProp;
@@ -141,7 +151,8 @@
           }
         }
 
-        .form-email, .form-password {
+        .form-email,
+        .form-password {
           display: flex;
           flex-direction: column;
           gap: 5px;
@@ -160,7 +171,7 @@
           padding: 10px 5px;
           font-size: 0.75rem;
           border-radius: 5px;
-          color:white;
+          color: white;
         }
 
         .register-success {
@@ -170,7 +181,7 @@
           font-size: 0.75rem;
           font-weight: 400;
           border-radius: 5px;
-          color:white;
+          color: white;
         }
       }
     }
@@ -183,7 +194,7 @@
       }
       .change-status {
         display: inline-block;
-        color: #FFA500;
+        color: #ffa500;
         cursor: pointer;
         position: relative;
         border: none;
@@ -195,7 +206,7 @@
 
       .change-status:focus,
       .change-status:hover {
-        color: #FFA500;
+        color: #ffa500;
       }
 
       .change-status:focus:after,
@@ -212,7 +223,7 @@
         position: absolute;
         width: 0%;
         height: 1.5px;
-        background-color: #FFA500;
+        background-color: #ffa500;
         transition-timing-function: $transitionProp;
         transition-duration: 400ms;
         transition-property: width, left;
@@ -224,9 +235,10 @@
     color: black;
     display: flex;
     align-items: center;
-    .login-container, .register-container {
-      position:static;
-      transform: translate(0,0);
+    .login-container,
+    .register-container {
+      position: static;
+      transform: translate(0, 0);
       width: 30%;
       margin: auto;
       background-color: transparent;
@@ -235,7 +247,8 @@
       backdrop-filter: none;
       max-width: 350px;
 
-      .login-wrapper, .register-wrapper {
+      .login-wrapper,
+      .register-wrapper {
         // gap: 0;
 
         h2 {
@@ -257,7 +270,6 @@
         }
 
         .change-status {
-
           color: #ff7b00;
         }
 
