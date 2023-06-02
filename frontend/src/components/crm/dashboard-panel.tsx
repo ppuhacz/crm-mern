@@ -24,7 +24,7 @@ const Panel = (props: PanelProps) => {
 
       <ul
         className={`panel-content ${
-          isActive ? "panel-active" : "panel-hidden"
+          isMobile ? (isActive ? "panel-active" : "panel-hidden") : ""
         }`}
       >
         {content.map((item: string) => (

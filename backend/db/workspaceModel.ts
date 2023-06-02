@@ -8,7 +8,7 @@ export interface WorkSpaceDocument extends Document {
 const WorkSpaceSchema = new mongoose.Schema({
   companyName: {
     type: String,
-    required: [true, "Please provide aa name!"],
+    required: [true, "Please provide a name!"],
     unique: false
   },
   country: {

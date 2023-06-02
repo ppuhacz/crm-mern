@@ -17,7 +17,7 @@
       z-index: inherit;
       bottom: 20px;
       right: 20px;
-      opacity: 0.4;
+      opacity: 0.5;
     }
 
     &::before {
@@ -33,7 +33,7 @@
       position: fixed;
       left: 0;
       top: 0;
-      opacity: 0.3;
+      opacity: 0.5;
       z-index: inherit;
     }
   }
@@ -60,47 +60,52 @@
     }
 
     .dashboard-content {
-      padding: 0 25px;
-      height: 100%;
+      padding: 0 20px;
+      width: 100%;
+      padding-bottom: 50px;
 
       .dashboard-panels {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        // align-items: center;
         gap: 20px;
 
         .dashboard-panel {
           color: white;
-          background-color: #e2e0ec2d;
+          background-color: #20143d44;
           width: 100%;
           max-width: 300px;
-          backdrop-filter: blur(5px);
+          backdrop-filter: blur(10px);
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
 
           .panel-title {
             padding: 20px;
             text-align: center;
-            border-bottom: 1px solid #e8f3f1;
+            border-bottom: 1px solid #a1a1a1;
             font-size: 1.2rem;
           }
-        }
-
-        ul {
-          list-style-type: none;
         }
 
         .mobile {
           height: 100%;
           overflow: hidden;
+          ul {
+            overflow-y: auto;
+          }
         }
 
         .desktop {
-          height: 60vh;
-          max-height: 500px;
+          ul {
+            overflow: auto;
+            height: 50vh;
+            max-height: 500px;
+          }
         }
 
         .panel-active {
-          height: 250px;
+          height: 50vh;
+          max-height: 500px;
           transition: height $transitionPropShort;
         }
 
@@ -110,19 +115,37 @@
         }
 
         .panel-content {
+          list-style-type: none;
+
           li {
             padding: 15px 20px;
-            border-bottom: 1px solid white;
+            border-bottom: 1px solid #9897993f;
+
+            &:hover {
+              transition: background-color $transitionProp;
+              background-color: #9897993f;
+              cursor: pointer;
+            }
           }
         }
-      }
-    }
-  }
 
-  @media (min-width: 768px) {
-    .dashboard-wrapper {
-      .dashboard-content {
-        margin-left: 50px;
+        .msg-panel {
+          &-top-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+
+          &-date {
+            font-size: 0.65rem;
+            color: $gray-text;
+          }
+
+          &-message {
+            color: $gray-text;
+            font-size: 0.8rem;
+          }
+        }
       }
     }
   }

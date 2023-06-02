@@ -45,7 +45,11 @@ const FirstLogin = ({ data, userID }: any) => {
       })
       .catch((error) => {
         console.log(error);
-        setError("An error occurred. Please try again.");
+        if (error.response?.data?.error?.name === "ValidationError") {
+          setError("Username already exists!");
+        } else {
+          setError("An error occurred. Please try again.");
+        }
       });
   };
 
@@ -60,6 +64,17 @@ const FirstLogin = ({ data, userID }: any) => {
           </p>
         </div>
         <form onSubmit={(e) => handleSubmit(e)}>
+          {error && (
+            <p className='error-message'>
+              <img
+                src={exclamationMarkIcon}
+                width={15}
+                height={15}
+                alt='exclamation mark'
+              />
+              {error}
+            </p>
+          )}
           {usernameError && (
             <p className='error-message'>
               <img
