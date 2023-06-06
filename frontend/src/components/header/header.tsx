@@ -7,7 +7,6 @@ import contactsIcon from "../../img/contacts-icon.svg";
 import logoutIcon from "../../img/logout-icon.svg";
 import homeIcon from "../../img/home-icon.svg";
 import workspaceIcon from "../../img/workspace-icon.svg";
-import "./styles/header-styles.scss";
 const cookies = new Cookies();
 
 const Header = () => {

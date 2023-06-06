@@ -1,3 +1,8 @@
+@import "./components/auth/styles/auth-styles.scss";
+@import "./components/header/styles/header-styles.scss";
+@import "./components/crm/styles/dashboard-styles.scss";
+@import "./components/crm/styles/first-login-styles.scss";
+
 .App {
   display: flex;
   overflow-x: hidden;

@@ -12,7 +12,10 @@
     "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
+    "cssnano": "^6.0.1",
+    "node-sass": "^9.0.0",
     "postcss": "^8.4.24",
+    "postcss-reporter": "^7.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.11.2",
@@ -37,7 +40,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "node-sass src/app.scss -o temp.css && postcss temp.css -o out.css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

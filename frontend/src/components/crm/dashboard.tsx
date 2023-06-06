@@ -3,7 +3,6 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import FirstLogin from "./first-login/first-login";
 import leadLinkLogo from "../../img/LeadLink-logo-nightmode.svg";
-import "./styles/dashboard-styles.scss";
 import Panel from "./dashboard-panel";
 import MessagesPanel from "./dashboard-msg-panel";
 const cookies = new Cookies();

@@ -1,7 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import axios from "axios";
 import exclamationMarkIcon from "../../../img/exclamation-mark-rounded.svg";
-import "../styles/first-login-styles.scss";
 
 const FirstLogin = ({ data, userID }: any) => {
   const [fullname, setFullname] = useState<string>("");

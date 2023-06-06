@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Login from "./login/login";
 import Register from "./register/register";
-import "./styles/auth-styles.scss";
 import useIsMobile from "../../hooks/is-mobile";
 import desktopLoginBg from "../../img/login-background-desktop-v2.webp";
 import logoNightMode from "../../img/LeadLink-logo-nightmode.svg";
