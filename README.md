@@ -31,31 +31,49 @@ This project is in a very early development. At this moment, only the following 
 
 # Screenshots of current features 📸
 
-<b>Login page</b>
-</br>
-</br>
+<h2>Login page</h2>
+
 ![image](https://github.com/ppuhacz/crm-mern/assets/121962027/bc912219-a348-431e-b79a-381d6cc58f10)
 </br>
 </br>
 ![image](https://github.com/ppuhacz/crm-mern/assets/121962027/ed265163-a79c-4d25-bf90-8eb0f642c5df)
 </br>
 </br>
-<b>First login prompt</b>
+<h2>First login prompt + username validation</h2>
+
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/60a90422-6e14-48d3-beec-fd3cc05dea91)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/b9028d8d-72da-4a1e-b89a-666c35231360)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/6ec759e8-b5a7-4197-a52f-e9c1e94a4242)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/85de28a1-26a3-4342-ba06-e0f6876f95cf)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/469c0a82-c4a8-43a2-a895-d755db0adb66)
 </br>
 </br>
+
+<h2>Dashboard (with placeholders)</h2>
+
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/5a95eaa1-c869-4134-ad45-5c458ea9fa56)
+<br/>
+<br/>
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/9805264f-54dc-4823-b442-a55bc5ee4831)
+<br/>
+<br/>
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/60e0f29c-897b-4a02-b66c-79014001e306)
+</br>
+</br>
+
 <b>Navigation menu</b>
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/25eb9b86-5c73-45c5-bd96-fe83f0892ae5)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/de41c93b-6bb1-4fac-8210-faefe391acf9)
 </br>
 </br>
-![image](https://github.com/ppuhacz/crm-mern/assets/121962027/c44ac5a8-a4e1-44ce-a42e-75e10d5274bc)
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/46a5dc91-f502-4738-bd06-30e82261061d)
+</br>
+</br>
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/81014819-8a59-456a-b905-875683d08914)
+
 
 <!-- 
 # Get started 🤓
