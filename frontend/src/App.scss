@@ -1,7 +1,7 @@
-@import "./components/auth/styles/auth-styles.scss";
-@import "./components/header/styles/header-styles.scss";
-@import "./components/crm/styles/dashboard-styles.scss";
-@import "./components/crm/styles/first-login-styles.scss";
+@use "./components/auth/styles/auth-styles.scss";
+@use "./components/header/styles/header-styles.scss";
+@use "./components/crm/styles/dashboard-styles.scss";
+@use "./components/crm/styles/first-login-styles.scss";
 
 .App {
   display: flex;
