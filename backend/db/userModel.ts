@@ -33,14 +33,16 @@ const UserSchema = new mongoose.Schema({
     },
   },
   workSpaces: {
-    type: Schema.Types.ObjectId,
+    type: [Schema.Types.ObjectId],
     ref: "WorkSpace",
     required: false,
+    sparse: true,
   },
   tasks: {
-    type: Schema.Types.ObjectId,
+    type: [Schema.Types.ObjectId],
     ref: "Task",
     required: false,
+    sparse: true,
   },
 });
 
