@@ -5,8 +5,11 @@ export interface UserDocument extends Document {
   password: string;
   fullname?: string;
   username?: string;
+  userImage: string;
+  contactList?: Array<Schema.Types.ObjectId>;
   workSpaces?: Array<Schema.Types.ObjectId>;
   task?: Array<Schema.Types.ObjectId>;
+
 }
 const UserSchema = new mongoose.Schema({
   email: {
@@ -31,6 +34,16 @@ const UserSchema = new mongoose.Schema({
       },
       message: "Username already exists!",
     },
+  },
+  userImage: {
+    type: String,
+    default:'https://i.imgur.com/hTZ2oxb.png',
+  },
+  contactList: {
+    type: [Schema.Types.ObjectId],
+    ref: "ContactList",
+    required: false,
+    sparse: true,
   },
   workSpaces: {
     type: [Schema.Types.ObjectId],

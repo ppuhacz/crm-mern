@@ -1,10 +1,18 @@
-import express, { Request, Response, NextFunction } from "express";
+import express, { Request, Response, NextFunction, Router } from "express";
 import bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
+import formidable from 'formidable';
 import User from "./db/userModel";
 import dbConnect from "./db/dbConnect";
 import auth from "./auth";
+import path from 'path';
 const app = express();
+const router = express.Router();
+
+interface FileInfo extends formidable.File {
+  name: string,
+  path: string,
+}
 
 // Connecting to the data base
 dbConnect()
@@ -193,11 +201,9 @@ app.post("/postname/:userId", (request: Request, response: Response) => {
     });
 });
 
-
-
 // authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {
-  response.json({ message: "You are authorized to access me" });
+  response.json({ message: "You are authorized" });
 });
 
 export default app;

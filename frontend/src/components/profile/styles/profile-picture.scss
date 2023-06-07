@@ -1,0 +1,14 @@
+@import "../../../config/styles/variables.scss";
+
+.profile-picture-wrapper {
+  margin: 150px;
+  .profile-picture {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 1px solid #000000;
+    padding: 5px;
+    background-color: #ccc;
+  }
+}
