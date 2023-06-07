@@ -85,6 +85,17 @@ const FirstLogin = ({ data, userID }: any) => {
               {usernameError}
             </p>
           )}
+          {fullnameError && (
+            <p className='error-message'>
+              <img
+                src={exclamationMarkIcon}
+                width={15}
+                height={15}
+                alt='exclamation mark'
+              />
+              {fullnameError}
+            </p>
+          )}
           <label htmlFor='fullName'>
             Full name <span className='required'>*</span>
           </label>
