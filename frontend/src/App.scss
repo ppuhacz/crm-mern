@@ -3,6 +3,7 @@
 @use "./components/crm/styles/dashboard-styles.scss";
 @use "./components/crm/styles/first-login-styles.scss";
 @use "./components/profile/styles/profile-picture.scss";
+@use "./components/crm/contact/styles/contact-styles.scss";
 
 .App {
   display: flex;

@@ -1,21 +1,23 @@
-import express, { Request, Response, NextFunction, Router } from "express";
+import express, { Request, Response, NextFunction } from "express";
+import { Request as ExpressRequest } from 'express-serve-static-core';
 import bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
-import formidable from 'formidable';
 import User from "./db/userModel";
 import dbConnect from "./db/dbConnect";
 import auth from "./auth";
-import path from 'path';
+import { Contact, ContactRequest } from './db/contactModel';
+
 const app = express();
 const router = express.Router();
 
-interface FileInfo extends formidable.File {
-  name: string,
-  path: string,
-}
-
 // Connecting to the data base
 dbConnect()
+
+interface RequestCustom extends ExpressRequest {
+  user?: {
+    userId: string;
+  };
+}
 
 // Curb Cores Error by adding a header here
 app.use((request: Request, response: Response, next: NextFunction) => {
@@ -200,6 +202,142 @@ app.post("/postname/:userId", (request: Request, response: Response) => {
       });
     });
 });
+
+// Send contact request
+app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: Response) => {
+  const { username } = req.body;
+
+  // Check if recipient exists
+  const recipient = await User.findOne({ username }).select('_id');
+  if (!recipient) {
+    return res.status(404).json({ message: `User '${username}' not found` });
+  }
+
+  // Check if requester is trying to send a request to themselves
+  const requesterId = req.user?.userId;
+  const requester = await User.findById(requesterId).select('username');
+  if (requester?.username === username) {
+    return res.status(400).json({ message: "You can't send a request to yourself" });
+  }
+
+    // Check if recipient is already in the user's contacts
+    const checkIfAlreadyInvited = await ContactRequest.findOne({
+      requesterId,
+      recipientId: recipient._id,
+    });
+
+    if (checkIfAlreadyInvited) {
+      return res.status(400).json({ message: `A request has already been sent to ${username}` });
+    }
+
+  // Create and save the contact request
+  const request = new ContactRequest({
+    username,
+    requesterId: req.user?.userId,
+    recipientId: recipient._id,
+  });
+
+  await request.save();
+  res.status(200).json({ message: `Contact request sent to ${username}` });
+});
+
+function authenticateToken(req: RequestCustom, res: Response, next: NextFunction): void {
+  const authHeader = req.headers.authorization;
+  if (typeof authHeader !== 'undefined') {
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, 'RANDOM-TOKEN', (err, user) => {
+      if (err) {
+        return res.sendStatus(403);
+      }
+      req.user = user as { userId: string };
+      next();
+    });
+  } else {
+    res.status(401).json({message: "error"});
+  }
+}
+
+// Get contact requests
+app.get('/contact-requests/:userId', async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    const requests = await ContactRequest.find({ recipientId: userId }).populate('requesterId', 'username');
+
+    const requestList = await Promise.all(requests.map(async (request) => {
+      const requester = await User.findOne({_id: request.requesterId}).select('username');
+      return {
+        _id: request._id,
+        username: requester?.username
+      };
+    }));
+
+    res.json(requestList);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+// Accept or decline contact request
+app.put('/contact/:requestId', async (req: Request, res: Response) => {
+  const { requestId } = req.params;
+  const { userId, action } = req.body;
+
+  try {
+    const request = await ContactRequest.findById(requestId).populate('requesterId', 'username');
+    if (!request) throw new Error(`Request with ID ${requestId} not found`);
+    if (request.recipientId?.toString() !== userId) throw new Error(`User unauthorized`);
+
+    const contact = new Contact({
+      username: request.username,
+      userId: request.requesterId?._id,
+      contactId: request.recipientId,
+    });
+
+    if (action === 'accept') {
+      await contact.save();
+      await ContactRequest.deleteOne({ _id: requestId });
+      res.status(200).json({ message: `Contact added: ${request.username}` });
+    } else if (action === 'decline') {
+      await ContactRequest.deleteOne({ _id: requestId });
+      res.status(200).json({ message: `Invitation from ${request.username} declined` });
+    } else {
+      throw new Error(`Invalid action: ${action}`);
+    }
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
+// Get contact list
+app.get('/contact/:userId', async (req: Request, res: Response) => {
+  const { userId } = req.params;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) throw new Error(`User with ID ${userId} not found`);
+
+    const contacts = await Contact.find({ $or: [{ userId }, { contactId: userId }] }).populate(
+      { path: 'contactId', select: 'username' }
+    );
+    const contactList = contacts.map((contact) => ({
+      _id: contact._id,
+      username: contact.username,
+      status: 'accepted',
+    }));
+
+    const requests = await ContactRequest.find({ recipientId: userId }).populate('requesterId', 'username');
+    const requestList = requests.map((request) => ({
+      _id: request._id,
+      username: request.username,
+      status: 'pending',
+    }));
+
+    res.json([...contactList, ...requestList]);
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
+
 
 // authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {
