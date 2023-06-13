@@ -1,9 +1,18 @@
-import mongoose from 'mongoose';
+import mongoose, { Document, Model, model, Schema } from "mongoose";
 
 const ContactSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  contactId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  username:{type: String},
+  usernames: [String],
+  username: String,
+  requesterId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  recipientId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  addedTimestamp: Date,
+  status: String,
 });
 
 export const Contact = mongoose.model('Contact', ContactSchema);

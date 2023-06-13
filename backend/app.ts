@@ -100,8 +100,6 @@ app.post("/login", (request: Request, response: Response) => {
         { expiresIn: "24h" }
       )
 
-      // Setting the token to a HTTP only cookie
-
       response.cookie("LOGIN-TOKEN", token, {
         httpOnly: true,
         secure: true,
@@ -203,12 +201,14 @@ app.post("/postname/:userId", (request: Request, response: Response) => {
     });
 });
 
+// Contact requests
+
 // Send contact request
 app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: Response) => {
   const { username } = req.body;
 
   // Check if recipient exists
-  const recipient = await User.findOne({ username }).select('_id');
+  const recipient = await User.findOne({ username: { $regex: new RegExp("^" + username, "i") } }).select('_id');
   if (!recipient) {
     return res.status(404).json({ message: `User '${username}' not found` });
   }
@@ -216,18 +216,49 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
   // Check if requester is trying to send a request to themselves
   const requesterId = req.user?.userId;
   const requester = await User.findById(requesterId).select('username');
-  if (requester?.username === username) {
+  if (requester?.username?.toLowerCase() === username.toLowerCase()) {
     return res.status(400).json({ message: "You can't send a request to yourself" });
   }
 
-    // Check if recipient is already in the user's contacts
+  // Check if recipient is already in the user's contacts
+  async function contactExists(requesterId: string | undefined, recipientId: string | number) {
+    const existingRequest = await ContactRequest.findOne({
+      $or: [
+        { requesterId, recipientId },
+        { requesterId: recipientId },
+        { recipientId: requesterId }
+      ],
+      status: "pending"
+    }).lean();
+
+    const existingContact = await Contact.findOne({
+      $or: [
+        { requesterId, recipientId },
+        { requesterId: recipientId },
+        { recipientId: requesterId }
+      ],
+      status: "accepted"
+    }).lean();
+
+    return Boolean(existingRequest) || Boolean(existingContact);
+  }
+  const recipientId = recipient._id;
+
+  if (await contactExists(requesterId, recipientId)) {
+    return res.status(400).json({ message: "User is already a contact"});
+  }
+
     const checkIfAlreadyInvited = await ContactRequest.findOne({
-      requesterId,
-      recipientId: recipient._id,
+      $or:
+      [
+        { requesterId, recipientId: recipient._id },
+        { requesterId: recipient._id, recipientId: requesterId }
+      ]
     });
 
+
     if (checkIfAlreadyInvited) {
-      return res.status(400).json({ message: `A request has already been sent to ${username}` });
+      return res.status(400).send({ message: `A request has already been sent to ${username}` });
     }
 
   // Create and save the contact request
@@ -268,7 +299,8 @@ app.get('/contact-requests/:userId', async (req: Request, res: Response) => {
       const requester = await User.findOne({_id: request.requesterId}).select('username');
       return {
         _id: request._id,
-        username: requester?.username
+        username: requester?.username,
+        status: 'pending',
       };
     }));
 
@@ -288,15 +320,27 @@ app.put('/contact/:requestId', async (req: Request, res: Response) => {
     if (request.recipientId?.toString() !== userId) throw new Error(`User unauthorized`);
 
     const contact = new Contact({
-      username: request.username,
-      userId: request.requesterId?._id,
-      contactId: request.recipientId,
+      requesterId: request.requesterId?._id,
+      recipientId: request.recipientId?._id,
+      addedTimestamp: Date.now(),
+      status: action === 'accept' ? 'accepted' : 'pending',
     });
 
     if (action === 'accept') {
-      await contact.save();
-      await ContactRequest.deleteOne({ _id: requestId });
-      res.status(200).json({ message: `Contact added: ${request.username}` });
+      const requester = await User.findOne({_id: request.requesterId}).select('username');
+      const recipient = await User.findOne({_id: request.recipientId}).select('username');
+      if (requester?.username && recipient?.username) {
+        const usernames = [requester.username, recipient.username];
+        contact.usernames = usernames;
+
+        await contact.save();
+        await ContactRequest.deleteOne({ _id: requestId });
+
+        const otherUser = usernames.filter((username) => username !== recipient.username)[0];
+        contact.username = otherUser;
+
+        res.status(200).json({ message: `Contact added: ${otherUser}`, contact: contact });
+      }
     } else if (action === 'decline') {
       await ContactRequest.deleteOne({ _id: requestId });
       res.status(200).json({ message: `Invitation from ${request.username} declined` });
@@ -316,14 +360,27 @@ app.get('/contact/:userId', async (req: Request, res: Response) => {
     const user = await User.findById(userId);
     if (!user) throw new Error(`User with ID ${userId} not found`);
 
-    const contacts = await Contact.find({ $or: [{ userId }, { contactId: userId }] }).populate(
-      { path: 'contactId', select: 'username' }
+    const contacts = await Contact.find({ $or: [{ requesterId: userId }, { recipientId: userId }] }).populate(
+      [
+        {
+          path: 'requesterId',
+          select: 'username',
+        },
+        {
+          path: 'recipientId',
+          select: 'username',
+        },
+      ]
     );
-    const contactList = contacts.map((contact) => ({
-      _id: contact._id,
-      username: contact.username,
-      status: 'accepted',
-    }));
+    const contactList = contacts.map((contact) => {
+      const contactUsername = contact.usernames.filter((username) => username !== user.username);
+      return {
+        _id: contact._id,
+        username: contactUsername[0],
+        status: 'accepted',
+        addedTimestamp: contact.addedTimestamp,
+      };
+    });
 
     const requests = await ContactRequest.find({ recipientId: userId }).populate('requesterId', 'username');
     const requestList = requests.map((request) => ({
@@ -338,6 +395,22 @@ app.get('/contact/:userId', async (req: Request, res: Response) => {
   }
 });
 
+// Delete contact
+app.delete('/contact/:contactId', async (req: RequestCustom, res: Response) => {
+  const { contactId } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const contact = await Contact.findById(contactId);
+    if (!contact) throw new Error(`Contact with ID ${contactId} not found`);
+
+    await Contact.deleteOne({ _id: contactId });
+
+    res.status(200).json({ message: `Contact deleted` });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
+});
 
 // authentication endpoint
 app.get("/auth-endpoint", auth, (request, response) => {

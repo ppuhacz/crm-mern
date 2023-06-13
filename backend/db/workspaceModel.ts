@@ -1,11 +1,11 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose, { Document, Model, model, Schema } from "mongoose";
 
 export interface WorkSpaceDocument extends Document {
   companyName: string;
   country: string;
   city: string;
 }
-const WorkSpaceSchema = new mongoose.Schema({
+const WorkSpaceSchema = new Schema({
   companyName: {
     type: String,
     required: [true, "Please provide a name!"],
@@ -23,6 +23,6 @@ const WorkSpaceSchema = new mongoose.Schema({
   }
 })
 
-const WorkSpace: Model<WorkSpaceDocument> = mongoose.model<WorkSpaceDocument>("WorkSpace", WorkSpaceSchema);
+const WorkSpace: Model<WorkSpaceDocument> = model<WorkSpaceDocument>("WorkSpace", WorkSpaceSchema);
 
 export default WorkSpace;

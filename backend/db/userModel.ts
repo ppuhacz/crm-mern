@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Document, Model, model, Schema } from "mongoose";
 
 export interface UserDocument extends Document {
   email: string;
@@ -11,7 +11,7 @@ export interface UserDocument extends Document {
   task?: Array<Schema.Types.ObjectId>;
 
 }
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   email: {
     type: String,
     required: [true, "Please provide an Email!"],
@@ -60,6 +60,6 @@ const UserSchema = new mongoose.Schema({
 });
 
 
-const User: Model<UserDocument> = mongoose.model<UserDocument>("User", UserSchema);
+const User: Model<UserDocument> = model<UserDocument>("User", UserSchema);
 
 export default User;
