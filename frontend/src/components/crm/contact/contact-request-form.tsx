@@ -13,7 +13,7 @@ const ContactRequestForm = () => {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    setError(""); // Clear any previous error
+    setError(""); // Clear any previous errors
     const config = {
       method: "POST",
       url: "http://localhost:3000/contact-request",
@@ -36,14 +36,14 @@ const ContactRequestForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>{error && error}</div> <br />
-      <label htmlFor='username'>User ID:</label>
+      <label htmlFor='username'>Username:</label>
       <input
         type='text'
         id='username'
         value={username}
         onChange={(event) => setUsername(event.target.value)}
       />
-      <button type='submit'>Send Contact Request</button>
+      <button type='submit'>Invite</button>
       {msg && <h1>{msg}</h1>}
     </form>
   );

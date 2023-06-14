@@ -225,8 +225,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
     const existingRequest = await ContactRequest.findOne({
       $or: [
         { requesterId, recipientId },
-        { requesterId: recipientId },
-        { recipientId: requesterId }
+        { requesterId: recipientId, recipientId: requesterId }
       ],
       status: "pending"
     }).lean();
@@ -234,8 +233,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
     const existingContact = await Contact.findOne({
       $or: [
         { requesterId, recipientId },
-        { requesterId: recipientId },
-        { recipientId: requesterId }
+        { requesterId: recipientId, recipientId: requesterId }
       ],
       status: "accepted"
     }).lean();
@@ -258,7 +256,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
 
 
     if (checkIfAlreadyInvited) {
-      return res.status(400).send({ message: `A request has already been sent to ${username}` });
+      return res.status(400).send({ message: `An invitation to/from ${username} has already been sent` });
     }
 
   // Create and save the contact request
@@ -269,7 +267,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
   });
 
   await request.save();
-  res.status(200).json({ message: `Contact request sent to ${username}` });
+  res.status(200).json({ message: `Contact invite sent to ${username}` });
 });
 
 function authenticateToken(req: RequestCustom, res: Response, next: NextFunction): void {
@@ -316,7 +314,7 @@ app.put('/contact/:requestId', async (req: Request, res: Response) => {
 
   try {
     const request = await ContactRequest.findById(requestId).populate('requesterId', 'username');
-    if (!request) throw new Error(`Request with ID ${requestId} not found`);
+    if (!request) throw new Error(`Invitation with ID ${requestId} not found`);
     if (request.recipientId?.toString() !== userId) throw new Error(`User unauthorized`);
 
     const contact = new Contact({
