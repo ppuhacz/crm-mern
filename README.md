@@ -2,7 +2,7 @@
 CRM made with MongoDB, Express.js, React.js and Node.js
 
 # Current stage 💻
-This project is in a very early development. At this moment, only the following functions are available: 
+This project is in a very early development. At this moment, only the following functions and pages are available: 
 
 <ul>
   <li>login to an existing account</li>
@@ -10,6 +10,8 @@ This project is in a very early development. At this moment, only the following 
   <li>logout of the account</li>
   <li>first-login form that requires you to provide the service with more information about user (user's full name and username)</li>
   <li>slide out navigation menu</li>
+  <li>dashboard (filled with placeholders)</li>
+  <li>Contact page, contact invites list, sending contact invitations and accepting/declining them</li>
 </ul>
 
 # Built with 🔨
@@ -73,6 +75,18 @@ This project is in a very early development. At this moment, only the following 
 </br>
 </br>
 ![image](https://github.com/ppuhacz/crm-mern/assets/121962027/81014819-8a59-456a-b905-875683d08914)
+</br>
+</br>
+
+<b>Contact list (mobile only)</b>
+</br>
+</br>
+![image](https://github.com/ppuhacz/crm-mern/assets/121962027/41336099-5776-494a-9e84-3f2b58760efc)
+</br>
+</br>
+![invitations](https://github.com/ppuhacz/crm-mern/assets/121962027/7fd6ef14-1e90-4188-a027-b10ab0d0e73b)
+
+
 
 
 <!-- 
