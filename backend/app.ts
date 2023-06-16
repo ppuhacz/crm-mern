@@ -210,7 +210,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
   // Check if recipient exists
   const recipient = await User.findOne({ username: { $regex: new RegExp("^" + username, "i") } }).select('_id');
   if (!recipient) {
-    return res.status(404).json({ message: `User '${username}' not found` });
+    return res.status(404).json({ message: `User not found` });
   }
 
   // Check if requester is trying to send a request to themselves
@@ -256,7 +256,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
 
 
     if (checkIfAlreadyInvited) {
-      return res.status(400).send({ message: `An invitation to/from ${username} has already been sent` });
+      return res.status(400).send({ message: `This invitation is pending` });
     }
 
   // Create and save the contact request
@@ -267,7 +267,7 @@ app.post('/contact-request', authenticateToken, async (req: RequestCustom, res: 
   });
 
   await request.save();
-  res.status(200).json({ message: `Contact invite sent to ${username}` });
+  res.status(200).json({ message: `Invite sent successfully` });
 });
 
 function authenticateToken(req: RequestCustom, res: Response, next: NextFunction): void {

@@ -177,3 +177,178 @@
     }
   }
 }
+
+.invitations {
+  position: relative;
+  z-index: 80;
+
+  .invitation-icon {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: $danger-color;
+    border-radius: 50%;
+    bottom: 25px;
+    right: 50%;
+    transform: translate(50%);
+    box-shadow: 0 0 10px #202024;
+  }
+  .invites-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    font-size: 10px;
+    top: 5px;
+    right: 5px;
+    color: white;
+    background: linear-gradient(
+      60deg,
+      $background-primary 0%,
+      $background-secondary 100%
+    );
+    border-radius: 50%;
+  }
+
+  .invitations-wrapper {
+    position: fixed;
+    width: 250px;
+    height: 350px;
+    background-color: #202024;
+    margin: 0;
+    color: white;
+    bottom: 85px;
+    right: 50%;
+    transform: translate(50%);
+    box-shadow: 0 0 10px #202024;
+
+    .contact-invite-form {
+      padding: 10px;
+      border-bottom: 1px solid #ffffff3a;
+
+      span {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      input {
+        width: 100%;
+        font-family: "Raleway", sans-serif;
+        padding: 10px;
+        border: none;
+        outline: none;
+        background-color: #ffffff1f;
+        color: white;
+
+        &:focus {
+          background-color: #ffffff3a;
+        }
+      }
+      ::placeholder {
+        color: #ffffff50;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Raleway", sans-serif;
+        padding: 10px;
+        border: none;
+        border-left: 1px solid #535353;
+        outline: none;
+        background-color: #ffffff1f;
+
+        &:hover {
+          background-color: #ffffff3a;
+        }
+      }
+    }
+  }
+
+  .error-message {
+    margin: 0 0 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    background-color: $danger-color;
+    padding: 5px 5px;
+    font-size: 0.75rem;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .success-message {
+    display: flex;
+    margin: 0 0 10px 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #06a52e;
+    padding: 5px 0;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border-radius: 5px;
+    color: white;
+  }
+
+  .contact-requests-wrapper {
+    .pending-request-item-wrapper {
+      border-bottom: 1px solid #ffffff3a;
+
+      .pending-request-item {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      p {
+        font-size: 0.8rem;
+        max-width: 60%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-height: 20px;
+        overflow: hidden;
+      }
+
+      button {
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+      }
+
+      .request-accept {
+        background-color: #038624;
+        border: none;
+        color: white;
+      }
+
+      .request-decline {
+        background-color: $danger-color;
+        border: none;
+        color: white;
+      }
+    }
+
+    .no-requests {
+      padding: 10px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #a3a3a3;
+    }
+  }
+}

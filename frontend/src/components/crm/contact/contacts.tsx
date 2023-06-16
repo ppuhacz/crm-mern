@@ -27,13 +27,13 @@ const Contacts = () => {
   const [contactList, setContactList] = useState<Contact[]>([]);
   const [showInvitation, setShowInvitation] = useState<boolean>(false);
 
-  const userID = cookies.get("USER-ID");
+  const userID: string = cookies.get("USER-ID");
 
   useEffect(() => {
     const invitesPromise = axios.get<ContactInvites[]>(
       `http://localhost:3000/contact-requests/${userID}`
     );
-    const contactListPromise = axios.get(
+    const contactListPromise = axios.get<Contact[]>(
       `http://localhost:3000/contact/${userID}`
     );
 
@@ -51,7 +51,13 @@ const Contacts = () => {
     setShowInvitation(!showInvitation);
   };
 
-  const invitesCount = invites.length;
+  let invitesCount: string | number = 0;
+
+  if (invites.length > 0) {
+    invitesCount = invites.length.toString();
+  } else if (invites.length > 9) {
+    invitesCount = "9+";
+  }
 
   return (
     <div className='contacts-container'>
@@ -67,17 +73,22 @@ const Contacts = () => {
       />
       <br />
       <div className='invitations'>
-        <img
-          src={invitationIcon}
-          width={30}
-          height={30}
-          alt='invitation'
-          onClick={handleShowInvitationClick}
-        />
+        <div className='invitation-icon'>
+          <img
+            src={invitationIcon}
+            width={30}
+            height={30}
+            alt='invitation'
+            onClick={handleShowInvitationClick}
+          />
+          {invites.length > 0 && (
+            <p className='invites-count'>{invitesCount}</p>
+          )}
+        </div>
+
         {showInvitation && (
-          <>
+          <div className='invitations-wrapper'>
             <ContactRequestForm />
-            <br />
             <ContactRequests
               requests={invites}
               setRequests={setInvites}
@@ -85,7 +96,7 @@ const Contacts = () => {
               setContactList={setContactList}
               userID={userID}
             />
-          </>
+          </div>
         )}
       </div>
     </div>

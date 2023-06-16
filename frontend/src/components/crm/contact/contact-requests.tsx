@@ -66,34 +66,35 @@ export default function ContactRequests({
   };
 
   return (
-    <div className='contact-requests-container'>
-      <h2>Contact invitations</h2>
+    <div className='contact-requests-wrapper'>
       {requests.length > 0 ? (
-        <table>
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {requests.map((request) => (
-              <tr key={request._id}>
-                <td>{request.username}</td>
-                <td>
-                  <button onClick={() => handleAcceptRequest(request._id)}>
-                    Accept
+        <>
+          {requests.map((request) => (
+            <div className='pending-request-item-wrapper' key={request._id}>
+              <div className='pending-request-item'>
+                <p>{request.username}</p>
+                <span>
+                  <button
+                    onClick={() => handleAcceptRequest(request._id)}
+                    className='request-accept'
+                  >
+                    ✓
                   </button>
-                  <button onClick={() => handleDeclineRequest(request._id)}>
-                    Decline
+                  <button
+                    onClick={() => handleDeclineRequest(request._id)}
+                    className='request-decline'
+                  >
+                    ⨉
                   </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </span>
+              </div>
+            </div>
+          ))}
+        </>
       ) : (
-        <p>No pending contact requests.</p>
+        <div className='no-requests'>
+          <p>No pending contact requests.</p>
+        </div>
       )}
     </div>
   );
